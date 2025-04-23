@@ -1,0 +1,89 @@
+{
+	"name": "Loftia",
+	"version": "1.0.0",
+	"author": [
+		"Preston Hager"
+	],
+	"url": "https://www.mediawiki.org/wiki/Skin:Loftia",
+	"descriptionmsg": "Custom skin for the Loftia Community Wiki.",
+	"namemsg": "loftia",
+	"license-name": "CC0-1.0",
+	"type": "skin",
+	"requires": {
+		"MediaWiki": ">= 1.41.0"
+	},
+	"ValidSkinNames": {
+		"loftia": {
+			"class": "SkinMustache",
+			"args": [
+				{
+					"name": "loftia",
+					"supportsMwHeading": true,
+					"responsive": true,
+					"messages": [
+						"sitetitle",
+						"search",
+						"otherlanguages",
+						"tagline",
+						"navigation-heading"
+					],
+					"styles": [
+						"mediawiki.ui.icon",
+						"mediawiki.ui.button",
+						"skins.loftia.styles"
+					],
+					"scripts": [
+						"skins.loftia"
+					]
+				}
+			]
+		}
+	},
+	"MessagesDirs": {
+		"Example": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"skins.loftia.styles": {
+			"class": "MediaWiki\\ResourceLoader\\SkinModule",
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"content-tables": true,
+				"content-links": false,
+				"content-media": false,
+				"content-links-external": false,
+				"interface-message-box": true,
+				"interface-category": false,
+				"toc": true
+			},
+			"targets": [
+				"desktop",
+				"mobile"
+			],
+			"styles": [
+				"resources/skin.less"
+			]
+		},
+		"skins.loftia": {
+			"targets": [
+				"desktop",
+				"mobile"
+			],
+			"packageFiles": [
+				"resources/skin.js"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteSkinPath": "Example"
+	},
+	"ResourceModuleSkinStyles": {
+		"loftia": {
+			"+ext.echo.styles.badge": "resources/extensions/echo.styles.badge.less"
+		}
+	},
+	"manifest_version": 2
+}
