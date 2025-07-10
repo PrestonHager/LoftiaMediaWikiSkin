@@ -72,15 +72,15 @@ The rules are described [here][4] as well.
 
 [4]: https://tilburgsciencehub.com/topics/automation/version-control/advanced-git/naming-git-branches/
 
-### add a new Branch:
+### Add a new Branch:
 
 ```bash
 git checkout -b author-id- category-descriptiveName
 ```
 
-### check out another branch:
+### Check out another branch:
 
-use the following command. Add instead of "author-id- category-descriptiveName" the name of the branch you want to check out. 
+Use the following command. Add instead of "author-id- category-descriptiveName" the name of the branch you want to check out. 
 
 ```bash
 git checkout author-id- category-descriptiveName
