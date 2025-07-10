@@ -74,14 +74,22 @@ The rules are described [here][4] as well.
 
 ### Add a new Branch:
 
+Switch the parts of the branchname "author-id-category-descriptiveName" with your information as defined in the rules. 
+
 ```bash
-git checkout -b author-id- category-descriptiveName
+git checkout -b author-id-category-descriptiveName
+```
+
+Use the following command if you get the error that there is no origin upstream when you try to push the branch to the repository for the first time.
+
+```bash
+git push --set-upstream origin branchname
 ```
 
 ### Check out another branch:
 
-Use the following command. Add instead of "author-id- category-descriptiveName" the name of the branch you want to check out. 
+Use the following command. Add instead of "branchname" the name of the branch you want to check out. 
 
 ```bash
-git checkout author-id- category-descriptiveName
+git checkout branchname
 ```
