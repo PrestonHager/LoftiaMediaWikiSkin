@@ -47,3 +47,41 @@ git clone https://github.com/PrestonHager/LoftiaMediaWikiSkin.git skins/Loftia
 [2]: https://github.com/PrestonHager/MediaWikiInstance
 [3]: https://github.com/PrestonHager/LoftiaMediaWikiSkin
 
+
+## Naming Branches
+
+If you have setup your Development Enviroment you can make a branch of the main-branch to start working on your tasks.
+For naming branches the following rules apply: 
+
+
+1. We use "-" as separators
+2. Start with your name as author.
+3. Add the id/number of the task you work on. This is optional. If you don't have an id, write the comand without it.
+4. Add the categorie. we have the folloring categories:
+    - hotfix ->	for quickly fixing critical issues,
+    - usually -> with a temporary solution
+    - bugfix ->	for fixing a bug
+    - feature	-> for adding, removing or modifying a feature
+    - test	-> for experimenting something which is not an issue
+    - wip	-> for a work in progress
+    - id -> optional, the id/number of the task you work on
+
+5. Add a short descriptive name of the branch. It often describes what your work on.
+
+The rules are described [here][4] as well.
+
+[4]: https://tilburgsciencehub.com/topics/automation/version-control/advanced-git/naming-git-branches/
+
+### add a new Branch:
+
+```bash
+git checkout -b author-id- category-descriptiveName
+```
+
+### check out another branch:
+
+use the following command. Add instead of "author-id- category-descriptiveName" the name of the branch you want to check out. 
+
+```bash
+git checkout author-id- category-descriptiveName
+```
