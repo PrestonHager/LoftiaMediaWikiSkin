@@ -70,7 +70,7 @@ Enable the skin in `LocalSettings.php` with `wfLoadSkin( 'Loftia' );`. It needs
 MediaWiki 1.43 or newer.
 
  - **Light and dark themes.** Light ("parchment") is warm cream with plum
-   headings and terracotta links; dark ("chronicle night") is deep plum with
+   headings and blue links; dark ("chronicle night") is deep plum with
    gold accents. By default the wiki follows the reader's device setting; the
    sun/moon button in the header cycles device, light and dark, and remembers
    the choice in a cookie.

@@ -40,7 +40,7 @@ Main story and optional quests, with walkthroughs.
 == Story ==
 <div class="loftia-notice loftia-notice--spoiler"><div class="loftia-notice__body">'''Spoiler Warning:''' This section contains major spoilers.</div></div>
 
-A paragraph with a [[Main Page|blue link]], a [[Page that does not exist|red link]], an [https://www.mediawiki.org external link] and some <code>inline code</code>.
+A paragraph with a [[Special:SpecialPages|blue link]], a [[Page that does not exist|red link]], an [https://www.mediawiki.org external link] and some <code>inline code</code>.
 
 === Farming ===
 {| class="wikitable"
