@@ -57,7 +57,27 @@ Then open <http://localhost:8080>. Edits to the skin show up on reload; if a
 style change doesn't appear, hard-refresh (Ctrl+Shift+R) or add `?debug=1` to
 the URL. The admin account is `Admin` with the password in
 `dev/docker-compose.yml` (local preview only). To reset the wiki, run
-`docker compose -f dev/docker-compose.yml down -v`.
+`docker compose -f dev/docker-compose.yml down -v`. The skin sample page is at
+`Skin sample`.
+
+#### Testing with Live Wiki Content
+
+If you have SSH access to the wiki host, you can copy the live wiki's pages and
+uploaded files into the preview:
+
+```bash
+sh dev/pull-live-fixtures.sh
+```
+
+It reads (never writes) the live wiki, saves the content to `dev/fixtures/`,
+and imports it into the running preview, replacing its Main Page. Hub pages
+that build tables from Wikibase with Lua are expanded on the live wiki first,
+so they render without Wikibase. Set `SSH` to choose the ssh client (on
+Windows, `SSH=/c/Windows/System32/OpenSSH/ssh.exe` uses your Windows keys),
+`WIKI_HOST` for the host, and `EXCLUDE` for pages to skip.
+
+**Never commit `dev/fixtures/`.** It is gitignored because this repo is public
+and the wiki is private, NDA-covered and © Qloud Games.
 
 [1]: https://www.mediawiki.org/wiki/Manual:Installing_MediaWiki
 [2]: https://github.com/PrestonHager/MediaWikiInstance

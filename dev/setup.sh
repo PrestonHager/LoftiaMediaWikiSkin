@@ -21,6 +21,9 @@ $wgLogos = [
 ];
 $wgSitename = 'Loftia Community Wiki';
 $wgShowExceptionDetails = true;
+$wgEnableUploads = true;
+// Bundled extensions that pages copied from the live wiki use.
+wfLoadExtensions( [ 'Cite', 'CategoryTree', 'ImageMap', 'InputBox', 'ParserFunctions', 'Poem', 'TemplateData' ] );
 EOF
 	mv LocalSettings.php /var/www/data/LocalSettings.php
 	chown -R www-data:www-data /var/www/data
@@ -28,7 +31,9 @@ fi
 
 cp /var/www/data/LocalSettings.php LocalSettings.php
 if [ ! -f /var/www/data/.sample-loaded ]; then
+	# Also kept as "Skin sample", since importing live pages replaces Main Page.
 	php maintenance/run.php edit --summary 'Loftia skin sample' 'Main Page' < /opt/loftia/sample-main-page.wiki
+	php maintenance/run.php edit --summary 'Loftia skin sample' 'Skin sample' < /opt/loftia/sample-main-page.wiki
 	chown -R www-data:www-data /var/www/data
 	touch /var/www/data/.sample-loaded
 fi

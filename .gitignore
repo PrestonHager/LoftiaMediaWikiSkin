@@ -2,3 +2,6 @@ node_modules/
 vendor/
 composer.lock
 .eslintcache
+
+# Content copied from the private live wiki (dev/pull-live-fixtures.sh). Never commit.
+dev/fixtures/
