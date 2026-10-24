@@ -1,0 +1,20 @@
+# Throwaway MediaWiki for previewing the skin locally. Not used in production.
+#   docker compose -f dev/docker-compose.yml up -d
+#   then open http://localhost:8080
+services:
+  mediawiki:
+    image: mediawiki:1.45
+    ports:
+      - "8080:80"
+    environment:
+      # Local preview admin only; never reuse this anywhere real.
+      MW_ADMIN_PASS: ${MW_ADMIN_PASS:-loftia-preview-only}
+    volumes:
+      - ..:/var/www/html/skins/Loftia:ro
+      - ./setup.sh:/usr/local/bin/loftia-setup.sh:ro
+      - ./sample-main-page.wiki:/opt/loftia/sample-main-page.wiki:ro
+      - mw-data:/var/www/data
+    entrypoint: [ sh, /usr/local/bin/loftia-setup.sh ]
+
+volumes:
+  mw-data: {}

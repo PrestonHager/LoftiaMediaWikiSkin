@@ -1,0 +1,56 @@
+<div class="loftia-notice"><span class="loftia-notice__icon">✦</span> Welcome to the '''Loftia Community Wiki''', preserving Loftia's world, one page at a time.</div>
+
+{| class="loftia-infobox"
+|+ Example Item
+|-
+! Type
+| Material
+|-
+! Found on
+| Example island
+|-
+! Used in
+| [[Crafting]], [[Building]]
+|}
+
+This is a sample page for previewing the Loftia skin. It shows headings, links, a table, the infobox and notice classes, and the spoiler warning box. All names on it are placeholders.
+
+== Explore the wiki ==
+<div class="loftia-cards">
+<div class="loftia-card">
+=== Items ===
+Materials, tools and cosmetics, with crafting recipes.
+</div>
+<div class="loftia-card">
+=== NPCs ===
+Everyone you can meet around the world.
+</div>
+<div class="loftia-card">
+=== World ===
+Maps, places and resource locations.
+</div>
+<div class="loftia-card">
+=== Quests ===
+Main story and optional quests, with walkthroughs.
+</div>
+</div>
+
+<span class="loftia-button">[[Special:RecentChanges|See recent changes]]</span>
+
+== Story ==
+<div class="loftia-notice loftia-notice--spoiler"><div class="loftia-notice__body">'''Spoiler Warning:''' This section contains major spoilers.</div></div>
+
+A paragraph with a [[Main Page|blue link]], a [[Page that does not exist|red link]], an [https://www.mediawiki.org external link] and some <code>inline code</code>.
+
+=== Farming ===
+{| class="wikitable"
+! Crop !! Season !! Grows in
+|-
+| Example crop || Spring || 2 days
+|-
+| Another crop || Autumn || 4 days
+|}
+
+<blockquote>We build together with kindness and transparency.</blockquote>
+
+[[Category:Sample pages]]

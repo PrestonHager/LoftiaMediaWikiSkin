@@ -1,0 +1,138 @@
+// Building blocks for wiki templates. Editors use these classes from wikitext,
+// e.g. Template:Spoiler or Template:Infobox, so the look stays in one place.
+
+// Notice box: <div class="loftia-notice">…</div>
+// Block layout (not flex) so bold or linked words flow inline with the text.
+.loftia-notice {
+	margin: 1rem 0;
+	padding: 0.75rem 1rem;
+	border-left: 6px solid var( --loftia-color-gold );
+	border-radius: @loftia-radius-small;
+	background-color: var( --loftia-color-callout );
+	color: var( --loftia-color-text );
+}
+
+.loftia-notice__icon {
+	margin-right: 0.5rem;
+	color: var( --loftia-color-gold-text );
+	font-size: 1.25rem;
+	line-height: 1;
+	vertical-align: -0.1em;
+}
+
+// Spoiler warning, as mocked up in the Chronicle's #general:
+// <div class="loftia-notice loftia-notice--spoiler">
+//   <div class="loftia-notice__body"><b>Spoiler Warning:</b> This section contains major spoilers.</div>
+// </div>
+.loftia-notice--spoiler {
+	padding: 0.75rem;
+
+	.loftia-notice__body {
+		padding: 0.9rem 1.1rem;
+		border-radius: @loftia-radius-small;
+		background-color: var( --loftia-color-callout-ink );
+		color: var( --loftia-color-callout-ink-text );
+		font-family: @loftia-font-mono;
+		font-size: 0.9rem;
+	}
+}
+
+// Infobox for items, NPCs, places: <table class="loftia-infobox">…</table>
+// Also styles the common "infobox" class so imported templates fit in.
+.loftia-infobox,
+.infobox {
+	float: right;
+	clear: right;
+	box-sizing: border-box;
+	width: 20rem;
+	max-width: 100%;
+	margin: 0 0 1rem 1.25rem;
+	border: 1px solid var( --loftia-color-border );
+	border-collapse: separate;
+	border-spacing: 0;
+	border-radius: @loftia-radius;
+	overflow: hidden;
+	background-color: var( --loftia-color-surface-raised );
+	box-shadow: var( --loftia-shadow );
+	font-size: 0.9rem;
+
+	caption,
+	.infobox-title {
+		padding: 0.6rem 0.75rem;
+		background-color: var( --loftia-color-rosewood );
+		color: #fffaf3;
+		font-family: @loftia-font-display;
+		font-size: 1.1rem;
+		font-weight: 800;
+	}
+
+	th,
+	td {
+		padding: 0.4rem 0.75rem;
+		border-top: 1px solid var( --loftia-color-border );
+		text-align: left;
+		vertical-align: top;
+	}
+
+	th {
+		width: 40%;
+		color: var( --loftia-color-text-muted );
+		font-weight: 600;
+	}
+}
+
+@media ( max-width: 639px ) {
+	.loftia-infobox,
+	.infobox {
+		float: none;
+		width: 100%;
+		margin: 0 0 1rem;
+	}
+}
+
+// Main page tiles: <div class="loftia-cards"><div class="loftia-card">…</div></div>
+.loftia-cards {
+	display: grid;
+	grid-template-columns: repeat( auto-fill, minmax( 13rem, 1fr ) );
+	gap: 1rem;
+	margin: 1rem 0;
+}
+
+.loftia-card {
+	padding: 1rem 1.1rem;
+	border: 1px solid var( --loftia-color-border );
+	border-radius: @loftia-radius;
+	background-color: var( --loftia-color-surface-sunken );
+	transition: transform @loftia-transition, box-shadow @loftia-transition;
+
+	&:hover {
+		box-shadow: var( --loftia-shadow );
+		transform: translateY( -2px );
+	}
+
+	> :first-child {
+		margin-top: 0;
+	}
+
+	> :last-child {
+		margin-bottom: 0;
+	}
+}
+
+// Button-style link: <span class="loftia-button">[[Page|Label]]</span>
+.loftia-button a,
+a.loftia-button {
+	display: inline-block;
+	padding: 0.45rem 1.1rem;
+	border-radius: @loftia-radius-pill;
+	background-color: var( --loftia-color-accent );
+	color: var( --loftia-color-accent-text ) !important; // stylelint-disable-line declaration-no-important
+	font-family: @loftia-font-display;
+	font-weight: 800;
+	text-decoration: none;
+
+	&:hover {
+		background-color: var( --loftia-color-accent-hover );
+		text-decoration: none;
+	}
+}

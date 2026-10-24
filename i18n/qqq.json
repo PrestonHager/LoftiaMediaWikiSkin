@@ -1,10 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"..."
+			"Preston Hager"
 		]
 	},
-	"skinname-example": "{{optional}}",
-	"example-skin-desc": "{{desc|what=skin|name=Example|url=https://www.mediawiki.org/wiki/Skin:Example}}",
-	"example-no-categories": "Message to show when no categories available"
+	"skinname-loftia": "{{optional}}",
+	"loftia-skin-desc": "{{desc|what=skin|name=Loftia|url=https://github.com/PrestonHager/LoftiaMediaWikiSkin}}",
+	"loftia-jump-to-content": "Text of the skip link that lets keyboard users jump past the header to the page content.",
+	"loftia-page-tools": "Accessible label for the row of page tabs (Page, Discussion, Edit, History and the More menu).",
+	"loftia-user-menu": "Label of the dropdown in the header that holds the personal tools (log in, preferences, log out).",
+	"loftia-theme-toggle": "Fallback label for the header button that switches between the light and dark colour themes.",
+	"loftia-theme-os": "Tooltip of the theme button while the wiki follows the device's light or dark setting.",
+	"loftia-theme-day": "Tooltip of the theme button while the light theme is selected.",
+	"loftia-theme-night": "Tooltip of the theme button while the dark theme is selected.",
+	"loftia-disclaimer": "Footer notice that the wiki is an unofficial fan project. Keep the copyright holder's name (Qloud Games) unchanged."
 }

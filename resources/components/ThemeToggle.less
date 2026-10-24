@@ -1,0 +1,17 @@
+// Light / dark / match-device button. skin.js unhides it and sets data-mode.
+
+.loftia-theme-toggle {
+	svg {
+		display: none;
+	}
+
+	&[ data-mode='os' ] .loftia-theme-toggle__os,
+	&[ data-mode='day' ] .loftia-theme-toggle__day,
+	&[ data-mode='night' ] .loftia-theme-toggle__night {
+		display: block;
+	}
+
+	&[ data-mode='night' ] {
+		color: var( --loftia-color-gold );
+	}
+}

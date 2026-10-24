@@ -1,0 +1,176 @@
+// Page tabs (Page / Discussion, Read / Edit / History) and the dropdown menus.
+
+.loftia-page-tools {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.5rem;
+	margin-bottom: 0.5rem;
+	padding-bottom: 0.75rem;
+	border-bottom: 1px solid var( --loftia-color-border );
+}
+
+.loftia-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem;
+
+	.loftia-portlet__heading {
+		.mixin-screen-reader-text();
+	}
+
+	.mw-portlet-body > ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+	}
+
+	li a {
+		display: block;
+		padding: 0.3rem 0.85rem;
+		border-radius: @loftia-radius-pill;
+		color: var( --loftia-color-text-muted );
+		font-size: 0.9rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition: background-color @loftia-transition, color @loftia-transition;
+
+		&:hover {
+			background-color: var( --loftia-color-surface-sunken );
+			color: var( --loftia-color-text );
+		}
+	}
+
+	// The active tab looks like the game's terracotta buttons.
+	li.selected a {
+		background-color: var( --loftia-color-accent );
+		color: var( --loftia-color-accent-text );
+	}
+
+	li.new a {
+		color: var( --loftia-color-link-new );
+	}
+}
+
+// Dropdowns (the "More" menu and the account menu) are plain <details>.
+
+.loftia-dropdown {
+	position: relative;
+}
+
+.loftia-dropdown__label {
+	display: flex;
+	align-items: center;
+	gap: 0.3rem;
+	padding: 0.3rem 0.85rem;
+	border-radius: @loftia-radius-pill;
+	color: var( --loftia-color-text-muted );
+	font-size: 0.9rem;
+	font-weight: 600;
+	list-style: none;
+	cursor: pointer;
+	user-select: none;
+
+	&::-webkit-details-marker {
+		display: none;
+	}
+
+	&::after {
+		content: '';
+		width: 0.4em;
+		height: 0.4em;
+		margin-left: 0.1rem;
+		border-right: 2px solid currentcolor;
+		border-bottom: 2px solid currentcolor;
+		transform: translateY( -0.15em ) rotate( 45deg );
+	}
+
+	&:hover {
+		background-color: var( --loftia-color-surface-sunken );
+		color: var( --loftia-color-text );
+	}
+}
+
+.loftia-dropdown[ open ] > .loftia-dropdown__label::after {
+	transform: translateY( 0.1em ) rotate( 225deg );
+}
+
+.loftia-dropdown__body {
+	position: absolute;
+	top: calc( 100% + 0.35rem );
+	right: 0;
+	z-index: @z-index-dropdown;
+	min-width: 12rem;
+	padding: 0.4rem;
+	border: 1px solid var( --loftia-color-border );
+	border-radius: @loftia-radius-small;
+	background-color: var( --loftia-color-surface-raised );
+	box-shadow: var( --loftia-shadow-menu );
+
+	ul {
+		display: block;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li a {
+		display: block;
+		padding: 0.4rem 0.7rem;
+		border-radius: 6px;
+		color: var( --loftia-color-text );
+		font-size: 0.9rem;
+		font-weight: normal;
+		text-decoration: none;
+		white-space: nowrap;
+
+		&:hover {
+			background-color: var( --loftia-color-surface-sunken );
+			color: var( --loftia-color-link-hover );
+		}
+	}
+}
+
+// The account menu sits on the dark header.
+.loftia-header .loftia-dropdown__label {
+	min-height: 2.5rem;
+	box-sizing: border-box;
+	background-color: var( --loftia-color-header-control );
+	color: var( --loftia-color-header-text );
+
+	&:hover {
+		background-color: var( --loftia-color-header-control-hover );
+		color: var( --loftia-color-header-text );
+	}
+}
+
+.loftia-header .loftia-dropdown__body a {
+	color: var( --loftia-color-text );
+}
+
+.loftia-user-menu__icon {
+	display: none;
+	fill: currentcolor;
+}
+
+// Phones: the account menu shrinks to a round person button to leave room for search.
+@media ( max-width: ( @loftia-breakpoint-tablet - 1px ) ) {
+	.loftia-header .loftia-user-menu__label {
+		justify-content: center;
+		width: 2.5rem;
+		padding: 0;
+
+		&::after {
+			display: none;
+		}
+	}
+
+	.loftia-user-menu__icon {
+		display: block;
+	}
+
+	.loftia-user-menu__text {
+		.mixin-screen-reader-text();
+	}
+}

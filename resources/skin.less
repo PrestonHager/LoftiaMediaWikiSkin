@@ -1,11 +1,26 @@
-// Reference all skin stylesheets and variables aside of extension specific.
-// Note, that 'screen-*' and 'print.css' stylesheets are imported in 'common.less'.
+// Entry point for the Loftia skin styles. Extension specific styles live in
+// resources/extensions and are registered via ResourceModuleSkinStyles.
 
 // Import MediaWiki skin variables for general fundamental styling.
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 // Import skin specific variables beyond MediaWiki skin variables scope.
 @import 'variables.less';
-// Import common skin style rules.
-@import 'common.less';
-// Import specific module style rules.
-@import 'Portlet.less';
+@import 'tokens.less';
+
+// Article content, for screen and print alike.
+@import 'content.less';
+@import 'components/Content.less';
+
+// Interface chrome.
+@media screen {
+	@import 'layout.less';
+	@import 'components/Portlet.less';
+	@import 'components/PageTools.less';
+	@import 'components/Search.less';
+	@import 'components/ThemeToggle.less';
+}
+
+@media print {
+	@import 'print.less';
+}
