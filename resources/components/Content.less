@@ -1,0 +1,275 @@
+// Building blocks for wiki templates. Editors use these classes from wikitext,
+// e.g. Template:Spoiler or Template:Infobox, so the look stays in one place.
+
+// Notice box: <div class="loftia-notice">…</div>
+// Block layout (not flex) so bold or linked words flow inline with the text.
+.loftia-notice {
+	margin: 1rem 0;
+	padding: 0.75rem 1rem;
+	border-left: 6px solid var( --loftia-color-gold );
+	border-radius: @loftia-radius-small;
+	background-color: var( --loftia-color-callout );
+	color: var( --loftia-color-text );
+}
+
+.loftia-notice__icon {
+	margin-right: 0.5rem;
+	color: var( --loftia-color-gold-text );
+	font-size: 1.25rem;
+	line-height: 1;
+	vertical-align: -0.1em;
+}
+
+// Spoiler warning, as mocked up in the Chronicle's #general:
+// <div class="loftia-notice loftia-notice--spoiler">
+//   <div class="loftia-notice__body"><b>Spoiler Warning:</b> This section contains major spoilers.</div>
+// </div>
+.loftia-notice--spoiler {
+	padding: 0.75rem;
+
+	.loftia-notice__body {
+		padding: 0.9rem 1.1rem;
+		border-radius: @loftia-radius-small;
+		background-color: var( --loftia-color-callout-ink );
+		color: var( --loftia-color-callout-ink-text );
+		font-family: @loftia-font-mono;
+		font-size: 0.9rem;
+	}
+}
+
+// Infobox for items, NPCs, places: <table class="loftia-infobox">…</table>
+// Also styles the common "infobox" class so imported templates fit in.
+.loftia-infobox,
+.infobox {
+	float: right;
+	clear: right;
+	box-sizing: border-box;
+	width: 20rem;
+	max-width: 100%;
+	margin: 0 0 1rem 1.25rem;
+	border: 1px solid var( --loftia-color-border );
+	border-collapse: separate;
+	border-spacing: 0;
+	border-radius: @loftia-radius;
+	overflow: hidden;
+	background-color: var( --loftia-color-surface-raised );
+	box-shadow: var( --loftia-shadow );
+	font-size: 0.9rem;
+
+	caption,
+	.infobox-title {
+		padding: 0.6rem 0.75rem;
+		background-color: var( --loftia-color-rosewood );
+		color: #fffaf3;
+		font-family: @loftia-font-display;
+		font-size: 1.1rem;
+		font-weight: 800;
+	}
+
+	th,
+	td {
+		padding: 0.4rem 0.75rem;
+		border-top: 1px solid var( --loftia-color-border );
+		text-align: left;
+		vertical-align: top;
+	}
+
+	th {
+		width: 40%;
+		color: var( --loftia-color-text-muted );
+		font-weight: 600;
+	}
+}
+
+@media ( max-width: 639px ) {
+	.loftia-infobox,
+	.infobox {
+		float: none;
+		width: 100%;
+		margin: 0 0 1rem;
+	}
+}
+
+// Main page tiles: <div class="loftia-cards"><div class="loftia-card">…</div></div>
+.loftia-cards {
+	display: grid;
+	grid-template-columns: repeat( auto-fill, minmax( 13rem, 1fr ) );
+	gap: 1rem;
+	margin: 1rem 0;
+}
+
+.loftia-card {
+	padding: 1rem 1.1rem;
+	border: 1px solid var( --loftia-color-border );
+	border-radius: @loftia-radius;
+	background-color: var( --loftia-color-surface-sunken );
+	transition: transform @loftia-transition, box-shadow @loftia-transition;
+
+	&:hover {
+		box-shadow: var( --loftia-shadow );
+		transform: translateY( -2px );
+	}
+
+	> :first-child {
+		margin-top: 0;
+	}
+
+	> :last-child {
+		margin-bottom: 0;
+	}
+}
+
+// Illustrated banner for the main page:
+// <div class="loftia-hero">
+//   <div class="loftia-hero__title">Loftia Community Wiki</div>
+//   <div class="loftia-hero__text">Preserving Loftia's world, one page at a time.</div>
+// </div>
+// A sky with clouds and a sun (a moon and stars in the dark theme) over two
+// layers of floating islands. Every colour comes from tokens.less.
+.loftia-hero {
+	position: relative;
+	overflow: hidden;
+	min-height: 12rem;
+	box-sizing: border-box;
+	margin: 0 0 1.5rem;
+	padding: 2rem 2rem 6rem;
+	border-radius: @loftia-radius;
+	background-color: var( --loftia-color-sky-bottom );
+	@sun: radial-gradient( circle at 84% 30%, var( --loftia-color-sun ) 0 26px, transparent 27px );
+	@glow: radial-gradient( circle at 84% 30%, var( --loftia-color-sun-glow ) 0, transparent 110px );
+	@sky: linear-gradient( 180deg, var( --loftia-color-sky-top ), var( --loftia-color-sky-bottom ) );
+	background-image: var( --loftia-hero-stars ), @sun, @glow, var( --loftia-hero-clouds ), @sky;
+	background-repeat: repeat, no-repeat, no-repeat, repeat-x, no-repeat;
+	background-position: 0 0, 0 0, 0 0, 0 16%, 0 0;
+	background-size: 160px 80px, auto, auto, 600px 120px, auto;
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		mask-repeat: repeat-x;
+		mask-size: auto 100%;
+		pointer-events: none;
+	}
+
+	&::before {
+		height: 7rem;
+		background-color: var( --loftia-color-hills-back );
+		/* @embed */
+		mask-image: url( images/islands-back.svg );
+		mask-position: 0 100%;
+	}
+
+	&::after {
+		height: 5.5rem;
+		background-color: var( --loftia-color-hills-front );
+		/* @embed */
+		mask-image: url( images/islands-front.svg );
+		mask-position: -160px 100%;
+	}
+}
+
+.loftia-hero__title,
+.loftia-hero__text {
+	position: relative;
+	z-index: 1;
+	max-width: 32rem;
+}
+
+.loftia-hero__title {
+	color: var( --loftia-color-heading );
+	font-family: @loftia-font-display;
+	font-size: 2.1rem;
+	font-weight: 800;
+	line-height: 1.15;
+}
+
+.loftia-hero__text {
+	margin-top: 0.5rem;
+	color: var( --loftia-color-text );
+	font-size: 1.1rem;
+}
+
+@media ( max-width: 639px ) {
+	.loftia-hero {
+		padding: 1.25rem 1.25rem 5.5rem;
+		background-position: 0 0, 0 0, 0 0, -60px 10%, 0 0;
+	}
+
+	.loftia-hero__title {
+		font-size: 1.6rem;
+	}
+}
+
+// Image paths are relative to skin.less, which imports this file.
+
+// Icons, coloured by the text colour around them:
+// <span class="loftia-icon loftia-icon--items"></span>
+// Available: items, npcs, world, quests, farming, lore.
+.loftia-icon {
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	background-color: currentcolor;
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-size: contain;
+	vertical-align: -0.2em;
+}
+
+.loftia-icon--items {
+	/* @embed */
+	mask-image: url( images/icons/items.svg );
+}
+
+.loftia-icon--npcs {
+	/* @embed */
+	mask-image: url( images/icons/npcs.svg );
+}
+
+.loftia-icon--world {
+	/* @embed */
+	mask-image: url( images/icons/world.svg );
+}
+
+.loftia-icon--quests {
+	/* @embed */
+	mask-image: url( images/icons/quests.svg );
+}
+
+.loftia-icon--farming {
+	/* @embed */
+	mask-image: url( images/icons/farming.svg );
+}
+
+.loftia-icon--lore {
+	/* @embed */
+	mask-image: url( images/icons/lore.svg );
+}
+
+// Icons in card headings pick up the rosewood accent.
+.loftia-card .loftia-icon {
+	margin-right: 0.35rem;
+	color: var( --loftia-color-rosewood );
+}
+
+// Button-style link: <span class="loftia-button">[[Page|Label]]</span>
+.loftia-button a,
+a.loftia-button {
+	display: inline-block;
+	padding: 0.45rem 1.1rem;
+	border-radius: @loftia-radius-pill;
+	background-color: var( --loftia-color-accent );
+	color: var( --loftia-color-accent-text ) !important; // stylelint-disable-line declaration-no-important
+	font-family: @loftia-font-display;
+	font-weight: 800;
+	text-decoration: none;
+
+	&:hover {
+		background-color: var( --loftia-color-accent-hover );
+		text-decoration: none;
+	}
+}

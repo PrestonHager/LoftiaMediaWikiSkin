@@ -1,0 +1,234 @@
+// Article content: headings, links, tables, media, contents box and categories.
+
+a {
+	color: var( --loftia-color-link );
+
+	&:hover {
+		color: var( --loftia-color-link-hover );
+	}
+}
+
+// Core colours the .mw-heading wrapper and the h2 inside inherits from it.
+.mw-heading,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	border-color: var( --loftia-color-border );
+	color: var( --loftia-color-heading );
+	font-family: @loftia-font-display;
+	font-weight: bold;
+	line-height: 1.25;
+}
+
+.firstHeading {
+	margin: 0.25rem 0 0;
+	font-size: 2.1rem;
+	font-weight: 800;
+	overflow-wrap: break-word;
+}
+
+#siteSub {
+	display: block;
+	margin: 0.1rem 0 0.75rem;
+	color: var( --loftia-color-text-muted );
+	font-size: 0.85rem;
+}
+
+#contentSub,
+#contentSub2 {
+	color: var( --loftia-color-text-muted );
+	font-size: 0.9rem;
+}
+
+.mw-body-content {
+	font-size: 1rem;
+
+	a:visited {
+		color: var( --loftia-color-link-visited );
+	}
+
+	a.new,
+	a.new:visited {
+		color: var( --loftia-color-link-new );
+	}
+
+	a.external {
+		color: var( --loftia-color-link );
+	}
+
+	h2,
+	.mw-heading2 {
+		margin-top: 1.75em;
+		padding-bottom: 0.3rem;
+		border: 0;
+		// A gold rule that fades out, like the dividers in the Chronicle's info posts.
+		background-image: linear-gradient( 90deg, var( --loftia-color-gold ), transparent 70% );
+		background-repeat: no-repeat;
+		background-position: 0 100%;
+		background-size: 100% 2px;
+		font-size: 1.5rem;
+	}
+
+	// A small gold sparkle leads each section heading.
+	.mw-heading2 h2::before {
+		content: '';
+		display: inline-block;
+		width: 0.6em;
+		height: 0.6em;
+		margin-right: 0.4em;
+		background-color: var( --loftia-color-gold );
+		/* @embed */
+		mask-image: url( images/sparkle.svg );
+		mask-size: contain;
+		vertical-align: 0.1em;
+	}
+
+	.mw-heading2 h2 {
+		margin: 0;
+		padding: 0;
+		background: none;
+	}
+
+	h3,
+	.mw-heading3 {
+		font-size: 1.2rem;
+	}
+
+	.mw-editsection {
+		font-family: @loftia-font-body;
+		font-size: 0.8rem;
+		font-weight: normal;
+	}
+
+	pre,
+	code {
+		border: 1px solid var( --loftia-color-border );
+		border-radius: 6px;
+		background-color: var( --loftia-color-surface-sunken );
+		color: var( --loftia-color-text );
+		font-family: @loftia-font-mono;
+	}
+
+	pre {
+		overflow: auto;
+		padding: 0.75rem 1rem;
+		white-space: pre-wrap;
+	}
+
+	code {
+		padding: 0.1em 0.35em;
+	}
+
+	blockquote {
+		margin: 1em 0;
+		padding: 0.25rem 1rem;
+		border-left: 4px solid var( --loftia-color-rosewood );
+		color: var( --loftia-color-text-muted );
+	}
+
+	hr {
+		height: 2px;
+		border: 0;
+		background-image: linear-gradient( 90deg, transparent, var( --loftia-color-gold ), transparent );
+	}
+}
+
+.mw-indicators {
+	float: right;
+	margin-top: 0.4rem;
+}
+
+// Tables
+
+.wikitable {
+	border-color: var( --loftia-color-border-strong );
+	background-color: var( --loftia-color-surface-raised );
+	color: var( --loftia-color-text );
+
+	> tr > th,
+	> * > tr > th {
+		background-color: var( --loftia-color-surface-sunken );
+		color: var( --loftia-color-heading );
+	}
+
+	> tr > th,
+	> tr > td,
+	> * > tr > th,
+	> * > tr > td {
+		border-color: var( --loftia-color-border-strong );
+	}
+}
+
+// Media
+
+figure[ typeof~='mw:File/Thumb' ],
+figure[ typeof~='mw:File/Frame' ] {
+	border-color: var( --loftia-color-border );
+	border-radius: @loftia-radius-small;
+	background-color: var( --loftia-color-surface-raised );
+
+	> figcaption {
+		border-color: var( --loftia-color-border );
+		background-color: transparent;
+		color: var( --loftia-color-text-muted );
+	}
+}
+
+.mw-body-content img {
+	max-width: 100%;
+	height: auto;
+}
+
+// Contents box
+
+#toc,
+.toc {
+	border: 1px solid var( --loftia-color-border );
+	border-radius: @loftia-radius-small;
+	background-color: var( --loftia-color-surface-sunken );
+	color: var( --loftia-color-text );
+
+	.toctitle h2 {
+		background: none;
+		font-size: 1rem;
+	}
+
+	.tocnumber {
+		color: var( --loftia-color-text-muted );
+	}
+
+	.toctogglelabel {
+		color: var( --loftia-color-link );
+	}
+}
+
+// Categories
+
+.catlinks {
+	margin-top: 2rem;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var( --loftia-color-border );
+	border-radius: @loftia-radius-small;
+	background-color: var( --loftia-color-surface-sunken );
+}
+
+// Message boxes take their colours from the Codex tokens in tokens.less.
+.cdx-message--block,
+.mw-message-box {
+	border-radius: @loftia-radius-small;
+}
+
+// Hardcoded white in core.
+.mw-changeslist-legend {
+	border-color: var( --loftia-color-border );
+	background-color: var( --loftia-color-surface-raised );
+}
+
+// Site notice
+
+#siteNotice:not( :empty ) {
+	margin-bottom: 1rem;
+}

@@ -1,0 +1,70 @@
+// Sidebar portlets (Navigation, Tools, languages).
+
+.mw-portlet ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.emptyPortlet {
+	display: none;
+}
+
+.loftia-sidebar {
+	.mw-portlet {
+		margin-bottom: 1.25rem;
+	}
+
+	// "✦ Navigation ✦", in the style of the Chronicle's channel categories.
+	.loftia-portlet__heading {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin: 0 0 0.4rem;
+		padding: 0 0.6rem;
+		color: var( --loftia-color-gold-text );
+		font-family: @loftia-font-display;
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+
+		&::before {
+			content: '✦';
+			color: var( --loftia-color-gold );
+		}
+
+		&::after {
+			content: '';
+			flex: 1;
+			height: 1px;
+			background-image: linear-gradient( 90deg, var( --loftia-color-gold ), transparent );
+		}
+	}
+
+	li a {
+		display: block;
+		padding: 0.3rem 0.6rem;
+		border-radius: @loftia-radius-small;
+		color: var( --loftia-color-text );
+		font-size: 0.925rem;
+		text-decoration: none;
+		transition: background-color @loftia-transition;
+
+		&:hover {
+			background-color: var( --loftia-color-surface-sunken );
+			color: var( --loftia-color-link-hover );
+		}
+	}
+
+	.mw-list-item.active a,
+	li.selected a {
+		background-color: var( --loftia-color-surface-sunken );
+		font-weight: 600;
+	}
+}
+
+// The first portlet is not given a heading on most wikis; keep it tidy.
+#p-navigation .loftia-portlet__heading {
+	margin-top: 0;
+}

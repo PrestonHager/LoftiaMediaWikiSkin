@@ -43,10 +43,87 @@ MediaWiki instance directory (typically `/var/www/html` or similar):
 git clone https://github.com/PrestonHager/LoftiaMediaWikiSkin.git skins/Loftia
 ```
 
+### Quick Preview with Docker
+
+The `dev/` folder has a throwaway MediaWiki 1.45 (SQLite) with this skin
+mounted read-only and a sample Main Page. With Docker running, from the repo
+root:
+
+```bash
+docker compose -f dev/docker-compose.yml up -d
+```
+
+Then open <http://localhost:8080>. Edits to the skin show up on reload; if a
+style change doesn't appear, hard-refresh (Ctrl+Shift+R) or add `?debug=1` to
+the URL. The admin account is `Admin` with the password in
+`dev/docker-compose.yml` (local preview only). To reset the wiki, run
+`docker compose -f dev/docker-compose.yml down -v`. The skin sample page is at
+`Skin sample`.
+
+#### Testing with Live Wiki Content
+
+If you have SSH access to the wiki host, you can copy the live wiki's pages and
+uploaded files into the preview:
+
+```bash
+sh dev/pull-live-fixtures.sh
+```
+
+It reads (never writes) the live wiki, saves the content to `dev/fixtures/`,
+and imports it into the running preview, replacing its Main Page. Hub pages
+that build tables from Wikibase with Lua are expanded on the live wiki first,
+so they render without Wikibase. Set `SSH` to choose the ssh client (on
+Windows, `SSH=/c/Windows/System32/OpenSSH/ssh.exe` uses your Windows keys),
+`WIKI_HOST` for the host, and `EXCLUDE` for pages to skip.
+
+**Never commit `dev/fixtures/`.** It is gitignored because this repo is public
+and the wiki is private, NDA-covered and © Qloud Games.
+
 [1]: https://www.mediawiki.org/wiki/Manual:Installing_MediaWiki
 [2]: https://github.com/PrestonHager/MediaWikiInstance
 [3]: https://github.com/PrestonHager/LoftiaMediaWikiSkin
 
+
+## Skin Overview
+
+Enable the skin in `LocalSettings.php` with `wfLoadSkin( 'Loftia' );`. It needs
+MediaWiki 1.43 or newer.
+
+ - **Light and dark themes.** Light ("parchment") is warm cream with plum
+   headings and blue links; dark ("chronicle night") is deep plum with
+   gold accents. By default the wiki follows the reader's device setting; the
+   sun/moon button in the header cycles device, light and dark, and remembers
+   the choice in a cookie.
+ - **Colours** are CSS custom properties in `resources/tokens.less`. Change a
+   colour there once and both themes, core message boxes and forms follow.
+ - **Hero art.** Set `--loftia-hero-image` on `:root` (e.g. in
+   `MediaWiki:Common.css`) to put artwork behind the header:
+   `:root { --loftia-hero-image: url( /path/to/hero.jpg ); }`
+ - **No web fonts.** Headings use the system's rounded font where one exists,
+   so pages never wait on a font download.
+
+### Classes for Wiki Templates
+
+These classes are styled by the skin so templates stay consistent:
+
+| Class | Use |
+| --- | --- |
+| `loftia-notice` | Gold-edged notice box. Put an optional icon in `<span class="loftia-notice__icon">`. |
+| `loftia-notice loftia-notice--spoiler` | Spoiler warning. Wrap the text in `<div class="loftia-notice__body">`. |
+| `loftia-infobox` (or `infobox`) | Right-floated info card for items, NPCs and places. Use a table caption as the title. |
+| `loftia-cards` / `loftia-card` | Grid of tiles, e.g. for the main page. |
+| `loftia-button` | Wrap a link to make it a terracotta button. |
+| `loftia-hero` | Illustrated banner: sky, clouds and floating islands, with a sun by day and a moon and stars by night. Put text in `loftia-hero__title` and `loftia-hero__text` divs. |
+| `loftia-icon loftia-icon--NAME` | Small icon on an empty `<span>`, coloured like the text around it. Names: `items`, `npcs`, `world`, `quests`, `farming`, `lore`. |
+
+### Images
+
+The artwork in `resources/images` (islands, clouds, sparkles and icons) was
+drawn for this skin as small SVGs and is CC0 like the rest of the repo. It is
+inlined into the stylesheet, so it costs no extra requests. Don't commit
+Loftia game art here: the repo is public and the art is © Qloud Games.
+
+See `dev/sample-main-page.wiki` for examples of each.
 
 ## Naming Branches
 

@@ -1,2 +1,21 @@
-@width: 66em;
-@border: #ccc;
+// Skin specific Less variables. Colours live in tokens.less as CSS custom
+// properties so the light and dark themes can swap them at runtime.
+
+// Layout
+@loftia-width-sidebar: 15rem;
+@loftia-width-page-max: 84rem;
+@loftia-height-header: 4rem;
+@loftia-breakpoint-desktop: 1000px;
+@loftia-breakpoint-tablet: 640px;
+
+// Shape: the in-game UI is soft and rounded throughout.
+@loftia-radius: 16px;
+@loftia-radius-small: 10px;
+@loftia-radius-pill: 999px;
+
+// Type. System fonts only, so the wiki never waits on a font download.
+@loftia-font-display: ui-rounded, 'Nunito', 'Varela Round', 'Quicksand', 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
+@loftia-font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+@loftia-font-mono: ui-monospace, 'Cascadia Code', 'SFMono-Regular', Menlo, Consolas, monospace;
+
+@loftia-transition: 150ms ease;

@@ -1,0 +1,10 @@
+{{! A portlet that collapses into a menu, e.g. "More" page actions or the account menu. }}
+<details role="navigation" id="{{id}}" class="{{class}} loftia-dropdown" aria-labelledby="{{id}}-label">
+	<summary id="{{id}}-label" class="loftia-dropdown__label" {{{html-user-language-attributes}}}>{{label}}</summary>
+	<div class="mw-portlet-body loftia-dropdown__body">
+		<ul {{{html-user-language-attributes}}}>
+			{{#array-items}}{{>ListItem}}{{/array-items}}
+		</ul>
+		{{{html-after-portal}}}
+	</div>
+</details>

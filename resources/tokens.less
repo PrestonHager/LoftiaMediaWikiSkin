@@ -1,0 +1,171 @@
+// Colour tokens for the light ("parchment") and dark ("chronicle night") themes.
+//
+// The palette follows the Loftia Chronicle community: deep plum and gold from
+// the community's server and crest, soft greige, terracotta and rosewood for a
+// warm, cosy feel, and the cream-and-gold spoiler box the community mocked up.
+//
+// The Codex token names at the end of each block let core interface pieces
+// (special pages, forms, dialogs) follow the active theme too.
+
+.loftia-theme-day() {
+	color-scheme: light;
+	--loftia-color-page: #f6eee2;
+	--loftia-color-surface: #fffaf3;
+	--loftia-color-surface-raised: #fff;
+	--loftia-color-surface-sunken: #f0e6d9;
+	--loftia-color-panel: #d9d0c8;
+	--loftia-color-border: #e3d5c4;
+	--loftia-color-border-strong: #c7b29b;
+	--loftia-color-text: #2a1d2e;
+	--loftia-color-text-muted: #6a5867;
+	--loftia-color-heading: #3b1f47;
+	--loftia-color-link: #2f5fa8;
+	--loftia-color-link-hover: #1f4380;
+	--loftia-color-link-visited: #5b4a9e;
+	--loftia-color-link-new: #b3261e;
+	--loftia-color-accent: #d9876c;
+	--loftia-color-accent-hover: #cf7457;
+	--loftia-color-accent-text: #2a1220;
+	--loftia-color-gold: #e2a82b;
+	--loftia-color-gold-text: #8a5d00;
+	--loftia-color-rosewood: #a8645a;
+	--loftia-color-callout: #fdf0d0;
+	--loftia-color-callout-ink: #161b22;
+	--loftia-color-callout-ink-text: #f6ecdc;
+	--loftia-color-header: #2a1638;
+	--loftia-color-header-end: #45225a;
+	--loftia-color-header-text: #f7ecdf;
+	--loftia-color-header-control: rgba( 255, 255, 255, 0.1 );
+	--loftia-color-header-control-hover: rgba( 255, 255, 255, 0.18 );
+	--loftia-color-scrim: rgba( 22, 13, 30, 0.45 );
+	--loftia-shadow: 0 1px 2px rgba( 42, 22, 56, 0.06 ), 0 8px 24px rgba( 42, 22, 56, 0.08 );
+	--loftia-shadow-menu: 0 12px 32px rgba( 42, 22, 56, 0.2 );
+	// Illustrated scenes (hero banner, footer): a peach sky with a sun by day.
+	--loftia-color-sky-top: #f7cfae;
+	--loftia-color-sky-bottom: #fdf1df;
+	--loftia-color-sun: #f6c25a;
+	--loftia-color-sun-glow: rgba( 246, 194, 90, 0.45 );
+	--loftia-color-hills-back: #e2bfae;
+	--loftia-color-hills-front: #b9786b;
+	--loftia-color-footer-hills: #e6d8c7;
+	/* @embed */
+	--loftia-hero-clouds: url( images/clouds-day.svg );
+	--loftia-hero-stars: none;
+
+	--color-base: #2a1d2e;
+	--color-emphasized: #1a1020;
+	--color-subtle: #6a5867;
+	--color-placeholder: #7d6c79;
+	--color-inverted: #fffaf3;
+	--color-progressive: #2f5fa8;
+	--color-progressive--hover: #1f4380;
+	--color-destructive: #b3261e;
+	--background-color-base: #fffaf3;
+	--background-color-neutral: #ece2d5;
+	--background-color-neutral-subtle: #f6eee2;
+	--background-color-interactive: #ece2d5;
+	--background-color-interactive-subtle: #f6eee2;
+	--background-color-progressive: #2f5fa8;
+	--background-color-progressive-subtle: #e6eefb;
+	--border-color-base: #c7b29b;
+	--border-color-subtle: #e3d5c4;
+	--border-color-progressive: #2f5fa8;
+	--background-color-notice-subtle: #f0e6d9;
+	--background-color-warning-subtle: #fdf0d0;
+	--background-color-error-subtle: #fde7e4;
+	--background-color-success-subtle: #e3f2ea;
+	--border-color-notice: #c7b29b;
+	--border-color-warning: #a66200;
+	--border-color-error: #b3261e;
+	--border-color-success: #1f7a5c;
+}
+
+.loftia-theme-night() {
+	color-scheme: dark;
+	--loftia-color-page: #160d1e;
+	--loftia-color-surface: #21142c;
+	--loftia-color-surface-raised: #2a1b37;
+	--loftia-color-surface-sunken: #1b1024;
+	--loftia-color-panel: #3a2849;
+	--loftia-color-border: #3d2a4d;
+	--loftia-color-border-strong: #5b4370;
+	--loftia-color-text: #f3e9dd;
+	--loftia-color-text-muted: #bfaec3;
+	--loftia-color-heading: #fbeedc;
+	--loftia-color-link: #8fb4ff;
+	--loftia-color-link-hover: #b5ceff;
+	--loftia-color-link-visited: #c3a8f0;
+	--loftia-color-link-new: #ff8a80;
+	--loftia-color-accent: #d9876c;
+	--loftia-color-accent-hover: #e59a80;
+	--loftia-color-accent-text: #1e0f19;
+	--loftia-color-gold: #f0c04a;
+	--loftia-color-gold-text: #f0c04a;
+	--loftia-color-rosewood: #b8746a;
+	--loftia-color-callout: #3b2c17;
+	--loftia-color-callout-ink: #10141a;
+	--loftia-color-callout-ink-text: #f6ecdc;
+	--loftia-color-header: #12091a;
+	--loftia-color-header-end: #2a1638;
+	--loftia-color-header-text: #f7ecdf;
+	--loftia-color-header-control: rgba( 255, 255, 255, 0.08 );
+	--loftia-color-header-control-hover: rgba( 255, 255, 255, 0.15 );
+	--loftia-color-scrim: rgba( 0, 0, 0, 0.6 );
+	--loftia-shadow: 0 1px 2px rgba( 0, 0, 0, 0.3 ), 0 8px 24px rgba( 0, 0, 0, 0.25 );
+	--loftia-shadow-menu: 0 12px 32px rgba( 0, 0, 0, 0.5 );
+	// By night the sun becomes a moon and the stars come out.
+	--loftia-color-sky-top: #140b22;
+	--loftia-color-sky-bottom: #3a2350;
+	--loftia-color-sun: #f3e9dd;
+	--loftia-color-sun-glow: rgba( 243, 233, 221, 0.18 );
+	--loftia-color-hills-back: #4a3160;
+	--loftia-color-hills-front: #26162f;
+	--loftia-color-footer-hills: #2a1b37;
+	/* @embed */
+	--loftia-hero-clouds: url( images/clouds-night.svg );
+	/* @embed */
+	--loftia-hero-stars: url( images/sparkles.svg );
+
+	--color-base: #f3e9dd;
+	--color-emphasized: #fff;
+	--color-subtle: #bfaec3;
+	--color-placeholder: #a08fa5;
+	--color-inverted: #21142c;
+	--color-progressive: #8fb4ff;
+	--color-progressive--hover: #b5ceff;
+	--color-destructive: #ff8a80;
+	--background-color-base: #21142c;
+	--background-color-neutral: #33233f;
+	--background-color-neutral-subtle: #2a1b37;
+	--background-color-interactive: #33233f;
+	--background-color-interactive-subtle: #2a1b37;
+	--background-color-progressive: #3d6fc4;
+	--background-color-progressive-subtle: #1f2a44;
+	--border-color-base: #5b4370;
+	--border-color-subtle: #3d2a4d;
+	--border-color-progressive: #8fb4ff;
+	--background-color-notice-subtle: #2a1b37;
+	--background-color-warning-subtle: #3a2c10;
+	--background-color-error-subtle: #3d1a1d;
+	--background-color-success-subtle: #12302a;
+	--border-color-notice: #5b4370;
+	--border-color-warning: #f0c04a;
+	--border-color-error: #ff8a80;
+	--border-color-success: #3fbf96;
+}
+
+:root {
+	.loftia-theme-day();
+}
+
+// Chosen explicitly with the theme button.
+html.skin-theme-clientpref-night {
+	.loftia-theme-night();
+}
+
+// "Match my device", the default.
+@media ( prefers-color-scheme: dark ) {
+	html.skin-theme-clientpref-os {
+		.loftia-theme-night();
+	}
+}

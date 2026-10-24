@@ -1,35 +1,38 @@
 {
 	"name": "Loftia",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"author": [
 		"Preston Hager"
 	],
-	"url": "https://www.mediawiki.org/wiki/Skin:Loftia",
-	"descriptionmsg": "Custom skin for the Loftia Community Wiki.",
-	"namemsg": "loftia",
+	"url": "https://github.com/PrestonHager/LoftiaMediaWikiSkin",
+	"descriptionmsg": "loftia-skin-desc",
+	"namemsg": "skinname-loftia",
 	"license-name": "CC0-1.0",
 	"type": "skin",
 	"requires": {
-		"MediaWiki": ">= 1.41.0"
+		"MediaWiki": ">= 1.43.0"
 	},
 	"ValidSkinNames": {
 		"loftia": {
-			"class": "SkinMustache",
+			"class": "MediaWiki\\Skins\\Loftia\\SkinLoftia",
 			"args": [
 				{
 					"name": "loftia",
 					"supportsMwHeading": true,
 					"responsive": true,
+					"clientPrefEnabled": true,
 					"messages": [
 						"sitetitle",
 						"search",
-						"otherlanguages",
 						"tagline",
-						"navigation-heading"
+						"navigation-heading",
+						"loftia-jump-to-content",
+						"loftia-page-tools",
+						"loftia-user-menu",
+						"loftia-theme-toggle",
+						"loftia-disclaimer"
 					],
 					"styles": [
-						"mediawiki.ui.icon",
-						"mediawiki.ui.button",
 						"skins.loftia.styles"
 					],
 					"scripts": [
@@ -39,8 +42,11 @@
 			]
 		}
 	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Skins\\Loftia\\": "includes/"
+	},
 	"MessagesDirs": {
-		"Example": [
+		"Loftia": [
 			"i18n"
 		]
 	},
@@ -51,34 +57,35 @@
 				"normalize": true,
 				"elements": true,
 				"content-tables": true,
-				"content-links": false,
-				"content-media": false,
-				"content-links-external": false,
+				"content-links": true,
+				"content-links-external": true,
+				"content-media": true,
 				"interface-message-box": true,
-				"interface-category": false,
+				"interface-category": true,
+				"interface-edit-section-links": true,
 				"toc": true
 			},
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"styles": [
 				"resources/skin.less"
 			]
 		},
 		"skins.loftia": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"packageFiles": [
 				"resources/skin.js"
+			],
+			"dependencies": [
+				"mediawiki.user"
+			],
+			"messages": [
+				"loftia-theme-os",
+				"loftia-theme-day",
+				"loftia-theme-night"
 			]
 		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
-		"remoteSkinPath": "Example"
+		"remoteSkinPath": "Loftia"
 	},
 	"ResourceModuleSkinStyles": {
 		"loftia": {

@@ -1,0 +1,345 @@
+// Page frame: header bar, sidebar, content card and footer.
+
+html {
+	background-color: var( --loftia-color-page );
+	scroll-padding-top: @loftia-height-header + 1rem;
+}
+
+body {
+	margin: 0;
+	background-color: var( --loftia-color-page );
+	color: var( --loftia-color-text );
+	font-family: @loftia-font-body;
+	line-height: 1.6;
+}
+
+.loftia-sr {
+	.mixin-screen-reader-text();
+}
+
+.loftia-skip-link {
+	position: absolute;
+	top: -100px;
+	left: 1rem;
+	z-index: @z-index-overlay;
+	padding: 0.5rem 1rem;
+	border-radius: @loftia-radius-small;
+	background-color: var( --loftia-color-gold );
+	color: #2a1220;
+	font-weight: bold;
+
+	&:focus {
+		top: 0.5rem;
+	}
+}
+
+:focus-visible {
+	outline: 2px solid var( --loftia-color-gold );
+	outline-offset: 2px;
+}
+
+// Header
+
+.loftia-header {
+	position: sticky;
+	top: 0;
+	z-index: @z-index-sticky;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	box-sizing: border-box;
+	height: @loftia-height-header;
+	padding: 0 1rem;
+	// Faint gold "sparkles" over the plum, echoing the ✦ ornaments the
+	// community uses in its channel headings. Set --loftia-hero-image on :root
+	// (e.g. in MediaWiki:Common.css) to lay the game's hero art over it.
+	background-color: var( --loftia-color-header );
+	@plum: linear-gradient( 100deg, var( --loftia-color-header ) 0%, var( --loftia-color-header-end ) 100% );
+	/* @embed */
+	background-image: var( --loftia-hero-image, none ), url( images/sparkles.svg ), @plum;
+	background-repeat: no-repeat, repeat, no-repeat;
+	background-size: cover, 160px 80px, cover;
+	background-position: center;
+	border-bottom: 2px solid var( --loftia-color-gold );
+	color: var( --loftia-color-header-text );
+}
+
+.loftia-icon-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	width: 2.5rem;
+	height: 2.5rem;
+	padding: 0;
+	border: 0;
+	border-radius: @loftia-radius-pill;
+	background-color: var( --loftia-color-header-control );
+	color: inherit;
+	cursor: pointer;
+	transition: background-color @loftia-transition;
+
+	&:hover {
+		background-color: var( --loftia-color-header-control-hover );
+	}
+
+	svg {
+		fill: currentcolor;
+	}
+}
+
+.loftia-brand {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	// Never narrower than the icon, or the search box overlaps it on phones.
+	min-width: 40px;
+	color: inherit;
+	text-decoration: none;
+
+	&:hover,
+	&:visited {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+.loftia-brand__icon {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	object-fit: contain;
+}
+
+.loftia-brand__wordmark {
+	max-height: 2.25rem;
+	width: auto;
+}
+
+.loftia-brand__title {
+	overflow: hidden;
+	color: var( --loftia-color-gold );
+	font-family: @loftia-font-display;
+	font-size: 1.25rem;
+	font-weight: 800;
+	letter-spacing: 0.01em;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.loftia-header__tools {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-left: auto;
+
+	.mw-portlet {
+		margin: 0;
+	}
+
+	.mw-portlet-body ul {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.loftia-portlet__heading {
+		.mixin-screen-reader-text();
+	}
+
+	a {
+		color: var( --loftia-color-header-text );
+	}
+}
+
+// The user page link duplicates the account menu on small screens.
+#p-user-page {
+	display: none;
+}
+
+// Page body
+
+.loftia-page {
+	display: flex;
+	align-items: flex-start;
+	gap: 1.5rem;
+	box-sizing: border-box;
+	max-width: @loftia-width-page-max;
+	margin: 0 auto;
+	padding: 1.5rem 1rem 2rem;
+}
+
+.loftia-main {
+	flex: 1 1 auto;
+	min-width: 0;
+	box-sizing: border-box;
+	padding: 1.25rem 1.5rem 2rem;
+	border: 1px solid var( --loftia-color-border );
+	border-radius: @loftia-radius;
+	background-color: var( --loftia-color-surface );
+	box-shadow: var( --loftia-shadow );
+}
+
+.loftia-nav-toggle {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.loftia-nav-scrim {
+	display: none;
+}
+
+.loftia-sidebar {
+	flex: 0 0 @loftia-width-sidebar;
+	box-sizing: border-box;
+}
+
+// Narrow screens: the sidebar slides in from the left.
+@media ( max-width: ( @loftia-breakpoint-desktop - 1px ) ) {
+	.loftia-sidebar {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		z-index: @z-index-overlay;
+		width: ~'min( 85vw, 20rem )';
+		padding: 1.25rem 1rem;
+		overflow-y: auto;
+		background-color: var( --loftia-color-surface );
+		box-shadow: var( --loftia-shadow-menu );
+		transform: translateX( -105% );
+		transition: transform 200ms ease;
+	}
+
+	.loftia-nav-toggle:checked ~ .loftia-page {
+		.loftia-sidebar {
+			transform: none;
+		}
+
+		.loftia-nav-scrim {
+			display: block;
+			position: fixed;
+			inset: 0;
+			z-index: @z-index-overlay - 1;
+			background-color: var( --loftia-color-scrim );
+		}
+	}
+
+	.loftia-page {
+		padding: 1rem 0.75rem 1.5rem;
+	}
+}
+
+@media ( max-width: ( @loftia-breakpoint-tablet - 1px ) ) {
+	.loftia-header {
+		gap: 0.5rem;
+		padding: 0 0.75rem;
+	}
+
+	.loftia-brand__title {
+		display: none;
+	}
+
+	.loftia-main {
+		padding: 1rem 1rem 1.5rem;
+		border-radius: @loftia-radius-small;
+	}
+
+	.loftia-page {
+		padding: 0.75rem 0 1rem;
+	}
+
+	.loftia-main,
+	.loftia-footer {
+		border-right-width: 0;
+		border-left-width: 0;
+		border-radius: 0;
+	}
+}
+
+@media ( min-width: @loftia-breakpoint-desktop ) {
+	.loftia-header__menu {
+		display: none;
+	}
+
+	.loftia-sidebar {
+		position: sticky;
+		top: @loftia-height-header + 1.5rem;
+		max-height: calc( 100vh - @loftia-height-header - 3rem );
+		overflow-y: auto;
+	}
+
+	#p-user-page {
+		display: block;
+	}
+}
+
+// Footer
+
+.loftia-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem 2rem;
+	position: relative;
+	overflow: hidden;
+	box-sizing: border-box;
+	max-width: @loftia-width-page-max;
+	margin: 0 auto 2rem;
+	padding: 1.25rem 1.5rem 4.5rem;
+	border: 1px solid var( --loftia-color-border );
+	border-radius: @loftia-radius;
+	background-color: var( --loftia-color-surface-sunken );
+	color: var( --loftia-color-text-muted );
+	font-size: 0.85rem;
+
+	ul {
+		margin: 0 0 0.5rem;
+		padding: 0;
+		list-style: none;
+	}
+
+	#footer-places li {
+		display: inline-block;
+		margin-right: 1rem;
+	}
+
+	#footer-icons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	// A quiet horizon of floating islands along the bottom edge.
+	&::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 3.5rem;
+		background-color: var( --loftia-color-footer-hills );
+		/* @embed */
+		mask-image: url( images/islands-front.svg );
+		mask-repeat: repeat-x;
+		mask-position: -240px 100%;
+		mask-size: auto 100%;
+		pointer-events: none;
+	}
+}
+
+.loftia-footer__text {
+	flex: 1 1 30rem;
+}
+
+.loftia-footer__disclaimer {
+	margin: 0.75rem 0;
+	padding-left: 0.75rem;
+	border-left: 3px solid var( --loftia-color-gold );
+}

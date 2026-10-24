@@ -1,0 +1,87 @@
+// Header search box.
+
+.loftia-search {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	max-width: 32rem;
+	margin: 0 auto;
+	position: relative;
+
+	#searchInput {
+		box-sizing: border-box;
+		width: 100%;
+		height: 2.5rem;
+		padding: 0 2.75rem 0 1rem;
+		border: 1px solid transparent;
+		border-radius: @loftia-radius-pill;
+		background-color: var( --loftia-color-surface );
+		color: var( --loftia-color-text );
+		font: inherit;
+		font-size: 0.95rem;
+		box-shadow: inset 0 1px 2px rgba( 0, 0, 0, 0.08 );
+
+		&::placeholder {
+			color: var( --loftia-color-text-muted );
+		}
+
+		&:focus {
+			border-color: var( --loftia-color-gold );
+			outline: 0;
+			box-shadow: 0 0 0 3px rgba( 226, 168, 43, 0.35 );
+		}
+	}
+
+	// The submit button becomes a round terracotta magnifier inside the field.
+	#searchButton,
+	.searchButton {
+		position: absolute;
+		top: 0.25rem;
+		right: 0.25rem;
+		width: 2rem;
+		height: 2rem;
+		padding: 0;
+		overflow: hidden;
+		border: 0;
+		border-radius: @loftia-radius-pill;
+		background-color: var( --loftia-color-accent );
+		// Spaces are %20-encoded because the URL is unquoted.
+		background-image: url( data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3Cpath%20fill='%232a1220'%20d='M12.2%2013.6a7%207%200%201%201%201.4-1.4l5.4%205.4-1.4%201.4zM3%208a5%205%200%201%200%2010%200A5%205%200%200%200%203%208z'/%3E%3C/svg%3E );
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 1rem;
+		color: transparent;
+		font-size: 0;
+		cursor: pointer;
+
+		&:hover {
+			background-color: var( --loftia-color-accent-hover );
+		}
+	}
+}
+
+@media ( max-width: ( @loftia-breakpoint-tablet - 1px ) ) {
+	.loftia-search #searchInput {
+		padding-left: 0.85rem;
+		font-size: 1rem;
+	}
+}
+
+// Suggestions dropdown from mediawiki.searchSuggest.
+.suggestions {
+	border-radius: @loftia-radius-small;
+	overflow: hidden;
+	box-shadow: var( --loftia-shadow-menu );
+}
+
+.suggestions-results,
+.suggestions-special {
+	border-color: var( --loftia-color-border ) !important; // stylelint-disable-line declaration-no-important
+	background-color: var( --loftia-color-surface-raised ) !important; // stylelint-disable-line declaration-no-important
+	color: var( --loftia-color-text );
+}
+
+.suggestions-result-current {
+	background-color: var( --loftia-color-accent ) !important; // stylelint-disable-line declaration-no-important
+	color: var( --loftia-color-accent-text ) !important; // stylelint-disable-line declaration-no-important
+}

@@ -1,8 +1,75 @@
-<div id="mw-wrapper">
-	<div class="mw-body" id="content" role="main">
+<a class="loftia-skip-link" href="#content">{{msg-loftia-jump-to-content}}</a>
+{{! Drives the mobile sidebar without JavaScript; the menu button in the header is its label. }}
+<input type="checkbox" id="loftia-nav-toggle" class="loftia-nav-toggle" tabindex="-1" aria-hidden="true">
+<header class="loftia-header" role="banner">
+	<label for="loftia-nav-toggle" class="loftia-header__menu loftia-icon-button" title="{{msg-navigation-heading}}">
+		<svg aria-hidden="true" viewBox="0 0 20 20" width="20" height="20"><path d="M2 4h16v2H2zm0 5h16v2H2zm0 5h16v2H2z"/></svg>
+		<span class="loftia-sr">{{msg-navigation-heading}}</span>
+	</label>
+	<a class="loftia-brand" href="{{link-mainpage}}">
+		{{#data-logos}}
+		{{#icon}}<img class="loftia-brand__icon" src="{{.}}" alt="" width="40" height="40">{{/icon}}
+		{{#wordmark}}<img class="loftia-brand__wordmark" src="{{src}}" alt="{{msg-sitetitle}}" width="{{width}}" height="{{height}}">{{/wordmark}}
+		{{^wordmark}}<span class="loftia-brand__title">{{msg-sitetitle}}</span>{{/wordmark}}
+		{{/data-logos}}
+	</a>
+	{{#data-search-box}}
+	<form action="{{form-action}}" role="search" class="loftia-search" id="p-search">
+		<input type="hidden" name="title" value="{{page-title}}">
+		<label class="loftia-sr" for="searchInput">{{msg-search}}</label>
+		{{{html-input}}}
+		{{{html-button-search}}}
+	</form>
+	{{/data-search-box}}
+	<div class="loftia-header__tools">
+		<button type="button" id="loftia-theme-toggle" class="loftia-theme-toggle loftia-icon-button" title="{{msg-loftia-theme-toggle}}" aria-label="{{msg-loftia-theme-toggle}}" hidden>
+			<svg class="loftia-theme-toggle__os" aria-hidden="true" viewBox="0 0 20 20" width="20" height="20"><path d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm0 2v12a6 6 0 0 1 0-12z"/></svg>
+			<svg class="loftia-theme-toggle__day" aria-hidden="true" viewBox="0 0 20 20" width="20" height="20"><circle cx="10" cy="10" r="4"/><path d="M9 0h2v3H9zm0 17h2v3H9zM0 9h3v2H0zm17 0h3v2h-3zM2.6 4l1.4-1.4 2.1 2.1-1.4 1.4zm11.3 11.3 1.4-1.4 2.1 2.1-1.4 1.4zM2.6 16l2.1-2.1 1.4 1.4L4 17.4zM13.9 4.7 16 2.6 17.4 4l-2.1 2.1z"/></svg>
+			<svg class="loftia-theme-toggle__night" aria-hidden="true" viewBox="0 0 20 20" width="20" height="20"><path d="M8.2 1.2A8.5 8.5 0 1 0 18.8 11.8 7 7 0 0 1 8.2 1.2z"/></svg>
+		</button>
+		{{#data-portlets}}
+		{{#data-user-page}}{{>Portlet}}{{/data-user-page}}
+		{{#data-notifications}}{{>Portlet}}{{/data-notifications}}
+		{{#data-user-interface-preferences}}{{>Portlet}}{{/data-user-interface-preferences}}
+		{{#data-user-menu}}
+		<details role="navigation" id="{{id}}" class="{{class}} loftia-dropdown" aria-labelledby="{{id}}-label">
+			<summary id="{{id}}-label" class="loftia-dropdown__label loftia-user-menu__label" title="{{label}}">
+				<svg class="loftia-user-menu__icon" aria-hidden="true" viewBox="0 0 20 20" width="20" height="20"><path d="M10 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm-7 8c0-3.5 3.1-6 7-6s7 2.5 7 6z"/></svg>
+				<span class="loftia-user-menu__text">{{msg-loftia-user-menu}}</span>
+			</summary>
+			<div class="mw-portlet-body loftia-dropdown__body">
+				<ul>{{#array-items}}{{>ListItem}}{{/array-items}}</ul>
+				{{{html-after-portal}}}
+			</div>
+		</details>
+		{{/data-user-menu}}
+		{{/data-portlets}}
+	</div>
+</header>
+<div class="loftia-page">
+	<label for="loftia-nav-toggle" class="loftia-nav-scrim" aria-hidden="true"></label>
+	<nav id="mw-navigation" class="loftia-sidebar" aria-labelledby="loftia-sidebar-heading">
+		<h2 id="loftia-sidebar-heading" class="loftia-sr">{{msg-navigation-heading}}</h2>
+		{{#data-portlets-sidebar.data-portlets-first}}{{>Portlet}}{{/data-portlets-sidebar.data-portlets-first}}
+		{{#data-portlets-sidebar.array-portlets-rest}}{{>Portlet}}{{/data-portlets-sidebar.array-portlets-rest}}
+		{{#data-portlets.data-languages}}{{>Portlet}}{{/data-portlets.data-languages}}
+	</nav>
+	<main class="mw-body loftia-main" id="content" role="main">
 		<div id="siteNotice">{{{html-site-notice}}}</div>
+		{{#data-portlets}}
+		<div class="loftia-page-tools" role="navigation" aria-label="{{msg-loftia-page-tools}}">
+			<div class="loftia-tabs">
+				{{#data-namespaces}}{{>Portlet}}{{/data-namespaces}}
+				{{#data-variants}}{{>PortletDropdown}}{{/data-variants}}
+			</div>
+			<div class="loftia-tabs loftia-tabs--end">
+				{{#data-views}}{{>Portlet}}{{/data-views}}
+				{{#data-actions}}{{>PortletDropdown}}{{/data-actions}}
+			</div>
+		</div>
+		{{/data-portlets}}
 		{{{html-user-message}}}
-		<div class="mw-indicators mw-body-content">
+		<div class="mw-indicators">
 		{{#array-indicators}}
 		<div id="{{id}}" class="{{class}}">{{{html}}}</div>
 		{{/array-indicators}}
@@ -15,54 +82,9 @@
 				{{{html-undelete-link}}}
 			</div>
 			{{{html-body-content}}}
-			<!-- todo: replace with .mixin-clearfix -->
-			<div class="visualClear"></div>
-			{{#data-portlets}}
-			{{>CategoryPortlet}}
-			{{/data-portlets}}
+			{{{html-categories}}}
 		</div>
 		{{{html-after-content}}}
-	</div>
-	<div id="mw-navigation">
-		<h2>{{msg-navigation-heading}}</h2>
-		<div id="p-logo" class="mw-portlet" role="banner">
-			<a href="{{link-mainpage}}">
-			{{#data-logos}}
-				{{#icon}}<img src="{{.}}" width="40" height="40">{{/icon}}
-				{{#wordmark}}<img src="{{src}}" width="{{width}}" height="{{height}}">{{/wordmark}}
-				{{^wordmark}}<h1>{{msg-sitetitle}}</h1>{{/wordmark}}
-			{{/data-logos}}
-			</a>
-		</div>
-		{{#data-search-box}}
-		<form action="{{form-action}}" role="search" class="mw-portlet" id="p-search">
-			<input type="hidden" name="title" value="{{page-title}}">
-			<h3>
-				<label for="searchInput">{{msg-search}}</label>
-			</h3>
-			{{{html-input}}}
-			{{{html-button-search}}}
-		</form>
-		{{/data-search-box}}
-		{{#data-portlets}}
-		<div id="user-tools">
-			{{#data-user-page}}{{>Portlet}}{{/data-user-page}}
-			{{#data-notifications}}{{>Portlet}}{{/data-notifications}}
-			{{#data-user-interface-preferences}}{{>Portlet}}{{/data-user-interface-preferences}}
-			{{#data-user-menu}}{{>Portlet}}{{/data-user-menu}}
-		</div>
-		<div id="page-tools">
-			{{#data-namespaces}}{{>Portlet}}{{/data-namespaces}}
-			{{#data-variants}}{{>Portlet}}{{/data-variants}}
-			{{#data-views}}{{>Portlet}}{{/data-views}}
-			{{#data-actions}}{{>Portlet}}{{/data-actions}}
-		</div>
-		{{/data-portlets}}
-		<div id="site-navigation">
-			{{#data-portlets-sidebar.data-portlets-first}}{{>Portlet}}{{/data-portlets-sidebar.data-portlets-first}}
-			{{#data-portlets-sidebar.array-portlets-rest}}{{>Portlet}}{{/data-portlets-sidebar.array-portlets-rest}}
-			{{#data-portlets.data-languages}}{{>Portlet}}{{/data-portlets.data-languages}}
-		</div>
-	</div>
-	{{#data-footer}}{{>Footer}}{{/data-footer}}
+	</main>
 </div>
+{{#data-footer}}{{>Footer}}{{/data-footer}}
