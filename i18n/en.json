@@ -10,8 +10,7 @@
 	"loftia-page-tools": "Page tools",
 	"loftia-user-menu": "Account",
 	"loftia-theme-toggle": "Change colour theme",
-	"loftia-theme-os": "Theme: match my device. Click for light.",
 	"loftia-theme-day": "Theme: light. Click for dark.",
-	"loftia-theme-night": "Theme: dark. Click to match my device.",
+	"loftia-theme-night": "Theme: dark. Click for light.",
 	"loftia-disclaimer": "The Loftia Community Wiki is a fan-made project and is not affiliated with or endorsed by Qloud Games. Loftia and its names, characters and artwork are © Qloud Games. All rights reserved."
 }

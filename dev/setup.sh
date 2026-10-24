@@ -23,8 +23,9 @@ $wgSitename = 'Loftia Community Wiki';
 $wgShowExceptionDetails = true;
 $wgEnableUploads = true;
 // Bundled extensions that pages copied from the live wiki use.
-wfLoadExtensions( [ 'Cite', 'CategoryTree', 'ImageMap', 'InputBox', 'ParserFunctions', 'Poem', 'TemplateData' ] );
+wfLoadExtensions( [ 'Cite', 'CategoryTree', 'Echo', 'ImageMap', 'InputBox', 'ParserFunctions', 'Poem', 'TemplateData' ] );
 EOF
+	php maintenance/run.php update --quick --conf LocalSettings.php > /dev/null
 	mv LocalSettings.php /var/www/data/LocalSettings.php
 	chown -R www-data:www-data /var/www/data
 fi

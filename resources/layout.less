@@ -310,6 +310,19 @@ body {
 		margin-right: 1rem;
 	}
 
+	// Small blue links got lost on the dark footer; use the text colour with a
+	// gold underline instead, in both themes.
+	a {
+		color: var( --loftia-color-text );
+		text-decoration: underline;
+		text-decoration-color: var( --loftia-color-gold );
+		text-underline-offset: 0.2em;
+
+		&:hover {
+			color: var( --loftia-color-gold-text );
+		}
+	}
+
 	#footer-icons {
 		display: flex;
 		flex-wrap: wrap;

@@ -5,3 +5,32 @@
 	white-space: nowrap;
 	display: inline-block;
 }
+
+// Echo draws its bell and tray as dark background images, which vanish on the
+// plum header. Redraw them as cream masks on ::before, leaving ::after free for
+// Echo's unread-count bubble.
+// Echo keeps the link itself a 20px block.
+.loftia-header .mw-echo-notifications-badge {
+	background-image: none;
+
+	&::before {
+		content: '';
+		display: block;
+		width: 20px;
+		height: 20px;
+		background-color: var( --loftia-color-header-text );
+		mask-repeat: no-repeat;
+		mask-position: center;
+		mask-size: contain;
+	}
+
+	&.oo-ui-icon-bell::before {
+		/* @embed */
+		mask-image: url( ../images/icons/bell.svg );
+	}
+
+	&.oo-ui-icon-tray::before {
+		/* @embed */
+		mask-image: url( ../images/icons/tray.svg );
+	}
+}

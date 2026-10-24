@@ -92,8 +92,9 @@ MediaWiki 1.43 or newer.
  - **Light and dark themes.** Light ("parchment") is warm cream with plum
    headings and blue links; dark ("chronicle night") is deep plum with
    gold accents. By default the wiki follows the reader's device setting; the
-   sun/moon button in the header cycles device, light and dark, and remembers
-   the choice in a cookie.
+   sun/moon button in the header switches between light and dark and
+   remembers the choice: in a cookie for logged-out readers, and as the
+   `userjs-loftia-theme` user option for logged-in users.
  - **Colours** are CSS custom properties in `resources/tokens.less`. Change a
    colour there once and both themes, core message boxes and forms follow.
  - **Hero art.** Set `--loftia-hero-image` on `:root` (e.g. in

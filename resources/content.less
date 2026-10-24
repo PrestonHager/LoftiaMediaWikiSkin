@@ -221,6 +221,39 @@ figure[ typeof~='mw:File/Frame' ] {
 	border-radius: @loftia-radius-small;
 }
 
+// Template:Box (styled in the wiki's Common.css for Citizen, whose info, warning
+// and danger colours are unreadable on Loftia's light theme). These rules
+// out-rank Common.css and use the message-box colours of the active theme.
+.mw-body-content .box {
+	box-sizing: border-box;
+	margin: 1rem 0;
+	padding: 0.25rem 1.25rem 0.75rem;
+	border: 1px solid var( --loftia-color-border );
+	border-left-width: 6px;
+	border-radius: @loftia-radius-small;
+	background: var( --loftia-color-surface-sunken );
+	color: var( --loftia-color-text );
+
+	h3 {
+		margin-top: 0.5rem;
+	}
+}
+
+.mw-body-content .box-info {
+	border-color: var( --border-color-progressive );
+	background: var( --background-color-progressive-subtle );
+}
+
+.mw-body-content .box-warning {
+	border-color: var( --border-color-warning );
+	background: var( --background-color-warning-subtle );
+}
+
+.mw-body-content .box-danger {
+	border-color: var( --border-color-error );
+	background: var( --background-color-error-subtle );
+}
+
 // Hardcoded white in core.
 .mw-changeslist-legend {
 	border-color: var( --loftia-color-border );
