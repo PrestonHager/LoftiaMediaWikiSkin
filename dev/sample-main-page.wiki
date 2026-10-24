@@ -1,4 +1,9 @@
-<div class="loftia-notice"><span class="loftia-notice__icon">✦</span> Welcome to the '''Loftia Community Wiki''', preserving Loftia's world, one page at a time.</div>
+<div class="loftia-hero">
+<div class="loftia-hero__title">Loftia Community Wiki</div>
+<div class="loftia-hero__text">Preserving Loftia's world, one page at a time.</div>
+</div>
+
+<div class="loftia-notice"><span class="loftia-notice__icon">✦</span> This is a notice box. Use it for tips, maintenance notes or welcome messages.</div>
 
 {| class="loftia-infobox"
 |+ Example Item
@@ -18,19 +23,19 @@ This is a sample page for previewing the Loftia skin. It shows headings, links, 
 == Explore the wiki ==
 <div class="loftia-cards">
 <div class="loftia-card">
-=== Items ===
+=== <span class="loftia-icon loftia-icon--items"></span>Items ===
 Materials, tools and cosmetics, with crafting recipes.
 </div>
 <div class="loftia-card">
-=== NPCs ===
+=== <span class="loftia-icon loftia-icon--npcs"></span>NPCs ===
 Everyone you can meet around the world.
 </div>
 <div class="loftia-card">
-=== World ===
+=== <span class="loftia-icon loftia-icon--world"></span>World ===
 Maps, places and resource locations.
 </div>
 <div class="loftia-card">
-=== Quests ===
+=== <span class="loftia-icon loftia-icon--quests"></span>Quests ===
 Main story and optional quests, with walkthroughs.
 </div>
 </div>
@@ -42,7 +47,7 @@ Main story and optional quests, with walkthroughs.
 
 A paragraph with a [[Special:SpecialPages|blue link]], a [[Page that does not exist|red link]], an [https://www.mediawiki.org external link] and some <code>inline code</code>.
 
-=== Farming ===
+=== <span class="loftia-icon loftia-icon--farming"></span> Farming ===
 {| class="wikitable"
 ! Crop !! Season !! Grows in
 |-

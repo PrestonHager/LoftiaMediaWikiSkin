@@ -54,12 +54,11 @@ body {
 	// community uses in its channel headings. Set --loftia-hero-image on :root
 	// (e.g. in MediaWiki:Common.css) to lay the game's hero art over it.
 	background-color: var( --loftia-color-header );
-	@sparkle-1: radial-gradient( circle at 12% 30%, rgba( 240, 192, 74, 0.25 ) 0, transparent 2px );
-	@sparkle-2: radial-gradient( circle at 58% 70%, rgba( 240, 192, 74, 0.2 ) 0, transparent 1.5px );
-	@sparkle-3: radial-gradient( circle at 86% 25%, rgba( 240, 192, 74, 0.22 ) 0, transparent 2px );
 	@plum: linear-gradient( 100deg, var( --loftia-color-header ) 0%, var( --loftia-color-header-end ) 100% );
-	background-image: var( --loftia-hero-image, none ), @sparkle-1, @sparkle-2, @sparkle-3, @plum;
-	background-size: cover;
+	/* @embed */
+	background-image: var( --loftia-hero-image, none ), url( images/sparkles.svg ), @plum;
+	background-repeat: no-repeat, repeat, no-repeat;
+	background-size: cover, 160px 80px, cover;
 	background-position: center;
 	border-bottom: 2px solid var( --loftia-color-gold );
 	color: var( --loftia-color-header-text );
@@ -288,10 +287,12 @@ body {
 	align-items: flex-start;
 	justify-content: space-between;
 	gap: 1rem 2rem;
+	position: relative;
+	overflow: hidden;
 	box-sizing: border-box;
 	max-width: @loftia-width-page-max;
 	margin: 0 auto 2rem;
-	padding: 1.25rem 1.5rem;
+	padding: 1.25rem 1.5rem 4.5rem;
 	border: 1px solid var( --loftia-color-border );
 	border-radius: @loftia-radius;
 	background-color: var( --loftia-color-surface-sunken );
@@ -313,6 +314,23 @@ body {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
+	}
+
+	// A quiet horizon of floating islands along the bottom edge.
+	&::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 3.5rem;
+		background-color: var( --loftia-color-footer-hills );
+		/* @embed */
+		mask-image: url( images/islands-front.svg );
+		mask-repeat: repeat-x;
+		mask-position: -240px 100%;
+		mask-size: auto 100%;
+		pointer-events: none;
 	}
 }
 

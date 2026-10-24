@@ -72,6 +72,20 @@ h6 {
 		font-size: 1.5rem;
 	}
 
+	// A small gold sparkle leads each section heading.
+	.mw-heading2 h2::before {
+		content: '';
+		display: inline-block;
+		width: 0.6em;
+		height: 0.6em;
+		margin-right: 0.4em;
+		background-color: var( --loftia-color-gold );
+		/* @embed */
+		mask-image: url( images/sparkle.svg );
+		mask-size: contain;
+		vertical-align: 0.1em;
+	}
+
 	.mw-heading2 h2 {
 		margin: 0;
 		padding: 0;

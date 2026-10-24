@@ -93,6 +93,15 @@ These classes are styled by the skin so templates stay consistent:
 | `loftia-infobox` (or `infobox`) | Right-floated info card for items, NPCs and places. Use a table caption as the title. |
 | `loftia-cards` / `loftia-card` | Grid of tiles, e.g. for the main page. |
 | `loftia-button` | Wrap a link to make it a terracotta button. |
+| `loftia-hero` | Illustrated banner: sky, clouds and floating islands, with a sun by day and a moon and stars by night. Put text in `loftia-hero__title` and `loftia-hero__text` divs. |
+| `loftia-icon loftia-icon--NAME` | Small icon on an empty `<span>`, coloured like the text around it. Names: `items`, `npcs`, `world`, `quests`, `farming`, `lore`. |
+
+### Images
+
+The artwork in `resources/images` (islands, clouds, sparkles and icons) was
+drawn for this skin as small SVGs and is CC0 like the rest of the repo. It is
+inlined into the stylesheet, so it costs no extra requests. Don't commit
+Loftia game art here: the repo is public and the art is © Qloud Games.
 
 See `dev/sample-main-page.wiki` for examples of each.
 
