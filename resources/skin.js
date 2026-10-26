@@ -1,36 +1,64 @@
 /* JavaScript for the Loftia skin */
 
 var THEME_FEATURE = 'skin-theme',
-	THEME_MODES = [ 'os', 'day', 'night' ];
+	THEME_OPTION = 'userjs-loftia-theme',
+	THEME_CLASS = /(^| )skin-theme-clientpref-(os|day|night)( |$)/;
 
+// The theme the page is set to: "os" (follow the device), "day" or "night".
 function getThemeMode() {
-	var mode = mw.user.clientPrefs.get( THEME_FEATURE );
-	return THEME_MODES.indexOf( mode ) === -1 ? 'os' : mode;
+	var match = document.documentElement.className.match( THEME_CLASS );
+	return match ? match[ 2 ] : 'os';
 }
 
-function showThemeMode( button, mode ) {
+// The theme actually on screen, resolving "os" through the device setting.
+function getShownTheme() {
+	var mode = getThemeMode();
+	if ( mode !== 'os' ) {
+		return mode;
+	}
+	return window.matchMedia && window.matchMedia( '(prefers-color-scheme: dark)' ).matches ?
+		'night' : 'day';
+}
+
+function setThemeMode( mode ) {
+	if ( mw.user.isAnon() ) {
+		// Saved in a cookie and applied before the page draws.
+		mw.user.clientPrefs.set( THEME_FEATURE, mode );
+		return;
+	}
+	// Client preferences are for logged-out readers only, so logged-in users
+	// keep their choice as a user option, which SkinLoftia reads.
+	// The following classes are used here:
+	// * skin-theme-clientpref-os
+	// * skin-theme-clientpref-day
+	// * skin-theme-clientpref-night
+	document.documentElement.className = document.documentElement.className
+		.replace( THEME_CLASS, '$1skin-theme-clientpref-' + mode + '$3' );
+	new mw.Api().saveOption( THEME_OPTION, mode );
+}
+
+function showTheme( button, theme ) {
 	// Messages that can be used here:
-	// * loftia-theme-os
 	// * loftia-theme-day
 	// * loftia-theme-night
-	var label = mw.msg( 'loftia-theme-' + mode );
-	button.setAttribute( 'data-mode', mode );
+	var label = mw.msg( 'loftia-theme-' + theme );
+	button.setAttribute( 'data-mode', theme );
 	button.setAttribute( 'title', label );
 	button.setAttribute( 'aria-label', label );
 }
 
 function initThemeToggle() {
 	var button = document.getElementById( 'loftia-theme-toggle' );
-	if ( !button || !mw.user.clientPrefs ) {
+	if ( !button ) {
 		return;
 	}
-	showThemeMode( button, getThemeMode() );
+	showTheme( button, getShownTheme() );
 	button.hidden = false;
+	// Every click flips what is on screen, so it never looks like it did nothing.
 	button.addEventListener( 'click', function () {
-		var current = THEME_MODES.indexOf( getThemeMode() ),
-			next = THEME_MODES[ ( current + 1 ) % THEME_MODES.length ];
-		mw.user.clientPrefs.set( THEME_FEATURE, next );
-		showThemeMode( button, next );
+		var next = getShownTheme() === 'night' ? 'day' : 'night';
+		setThemeMode( next );
+		showTheme( button, next );
 	} );
 }
 

@@ -107,12 +107,21 @@
 	border-radius: @loftia-radius-small;
 	background-color: var( --loftia-color-surface-raised );
 	box-shadow: var( --loftia-shadow-menu );
+}
 
+// A vertical list. The extra class out-ranks the flex rows that the page tabs
+// and header portlets use, which would otherwise lay menu items side by side.
+.loftia-dropdown .loftia-dropdown__body {
 	ul {
 		display: block;
 		margin: 0;
 		padding: 0;
 		list-style: none;
+	}
+
+	li {
+		display: block;
+		margin: 0;
 	}
 
 	li a {

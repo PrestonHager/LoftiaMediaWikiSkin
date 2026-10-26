@@ -14,7 +14,10 @@ services:
       - ./setup.sh:/usr/local/bin/loftia-setup.sh:ro
       - ./sample-main-page.wiki:/opt/loftia/sample-main-page.wiki:ro
       - mw-data:/var/www/data
+      # Uploads, kept in a volume so they survive the container being recreated.
+      - mw-images:/var/www/html/images
     entrypoint: [ sh, /usr/local/bin/loftia-setup.sh ]
 
 volumes:
   mw-data: {}
+  mw-images: {}

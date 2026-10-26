@@ -74,10 +74,10 @@
 				"resources/skin.js"
 			],
 			"dependencies": [
+				"mediawiki.api",
 				"mediawiki.user"
 			],
 			"messages": [
-				"loftia-theme-os",
 				"loftia-theme-day",
 				"loftia-theme-night"
 			]
